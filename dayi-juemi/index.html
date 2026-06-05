@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="大義覺迷：雍正、清宮檔案與思想政治的專題網站。">
+    <title>大義覺迷 | 雍正專題文獻與研究工具</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="大義覺迷首頁">
+        <span class="brand-mark">義</span>
+        <span>
+          <strong>大義覺迷</strong>
+          <small>雍正專題文獻與研究工具</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="主導覽">
+        <a href="#timeline">年表</a>
+        <a href="#texts">文獻庫</a>
+        <a href="#people">人物</a>
+        <a href="#places">地圖</a>
+        <a href="#images">圖像</a>
+        <a href="#tools">工具</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="kicker">清宮檔案 · 古籍頁面 · 現代學術資料庫</p>
+          <h1 id="hero-title">大義覺迷</h1>
+          <p class="hero-lede">
+            以《大義覺迷錄》為入口，連接雍正朝的政治語言、硃批奏摺、佛教修證、皇位繼承與地方治理。這不是文件堆積，而是一座可閱讀、可檢索、可對讀的思想史檔案館。
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#timeline">進入互動年表</a>
+            <a class="button ghost" href="#texts">查看文獻庫</a>
+          </div>
+        </div>
+        <aside class="hero-archive" aria-label="首頁檔案摘要">
+          <span class="archive-label">雍正六年九月初三日</span>
+          <p>硃批與奏摺並置，不只看制度命令，也看語氣、追問與政治表態。</p>
+          <dl>
+            <div><dt>核心文本</dt><dd>大義覺迷錄</dd></div>
+            <div><dt>閱讀方法</dt><dd>原文 · 標點 · 注釋 · 導讀</dd></div>
+            <div><dt>研究視角</dt><dd>正統論 · 君臣關係 · 教化政治</dd></div>
+          </dl>
+        </aside>
+      </section>
+
+      <section class="overview" aria-labelledby="overview-title">
+        <div>
+          <p class="section-kicker">網站結構</p>
+          <h2 id="overview-title">六個入口，互相聯動</h2>
+        </div>
+        <div class="overview-grid">
+          <a href="#timeline"><b>雍正年表</b><span>按主題篩選事件</span></a>
+          <a href="#texts"><b>文獻庫</b><span>分類閱讀與硃批視覺化</span></a>
+          <a href="#people"><b>人物圖譜</b><span>人物、事件、文獻互連</span></a>
+          <a href="#places"><b>地圖與空間</b><span>政治地理與檔案線索</span></a>
+          <a href="#images"><b>圖像與文物</b><span>書影、御筆、清宮圖像</span></a>
+          <a href="#tools"><b>研究工具</b><span>全文檢索、索引、對讀</span></a>
+        </div>
+      </section>
+
+      <section id="timeline" class="section panel-section" aria-labelledby="timeline-title">
+        <div class="section-heading">
+          <p class="section-kicker">Chronology</p>
+          <h2 id="timeline-title">雍正年表</h2>
+          <p>按事件類型篩選，從繼位、吏治、財政到曾靜案與佛教修證，讓時間線成為閱讀入口。</p>
+        </div>
+        <div class="filters" role="group" aria-label="年表分類篩選"></div>
+        <div class="timeline-layout">
+          <ol class="timeline-list" aria-live="polite"></ol>
+          <aside class="timeline-focus">
+            <span>聯動提示</span>
+            <h3>點選年份後</h3>
+            <p>可連到當年相關人物、文獻、地點與關鍵詞。此首版先示範資料結構與互動方式。</p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="texts" class="section" aria-labelledby="texts-title">
+        <div class="section-heading">
+          <p class="section-kicker">Text Corpus</p>
+          <h2 id="texts-title">文獻庫</h2>
+          <p>按文獻性質整理，而非雜亂排列。每類預留「原文、標點、注釋、導讀」欄位。</p>
+        </div>
+        <div class="text-tabs" role="tablist" aria-label="文獻分類"></div>
+        <div class="text-library" aria-live="polite"></div>
+
+        <div class="zhupi-reader">
+          <div class="reader-heading">
+            <div>
+              <p class="section-kicker">Feature Prototype</p>
+              <h3>硃批視覺化閱讀</h3>
+            </div>
+            <select id="tone-select" aria-label="選擇硃批語氣">
+              <option value="all">全部語氣</option>
+              <option value="嘉許">嘉許</option>
+              <option value="斥責">斥責</option>
+              <option value="追問">追問</option>
+              <option value="指示">指示</option>
+              <option value="警告">警告</option>
+              <option value="安撫">安撫</option>
+              <option value="政治表態">政治表態</option>
+            </select>
+          </div>
+          <div class="reader-grid">
+            <article>
+              <h4>臣工奏摺</h4>
+              <p>臣某謹奏地方錢糧、官吏操守與民間流言諸事，伏候聖裁。</p>
+              <p>奏摺側重事由、責任與地方治理脈絡；可標註人名、地名、官職、案由。</p>
+            </article>
+            <article class="vermilion">
+              <h4>雍正硃批</h4>
+              <div class="tone-list"></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="people" class="section panel-section" aria-labelledby="people-title">
+        <div class="section-heading">
+          <p class="section-kicker">Prosopography</p>
+          <h2 id="people-title">人物圖譜</h2>
+          <p>人物頁可連到文獻、事件與研究提示。此處以人物群組與關係線索建立首版索引。</p>
+        </div>
+        <div class="people-grid"></div>
+      </section>
+
+      <section id="places" class="section map-section" aria-labelledby="places-title">
+        <div class="section-heading">
+          <p class="section-kicker">Political Geography</p>
+          <h2 id="places-title">地圖與空間</h2>
+          <p>把雍正朝的政治事件放回空間：宮廷、邊疆、改土歸流、曾靜案與呂留良文本流傳。</p>
+        </div>
+        <div class="map-layout">
+          <div class="archive-map" aria-label="雍正朝政治地圖示意">
+            <button class="map-point" data-place="北京紫禁城" style="--x: 72%; --y: 28%;">北京</button>
+            <button class="map-point" data-place="圓明園" style="--x: 69%; --y: 24%;">圓明園</button>
+            <button class="map-point" data-place="青海" style="--x: 39%; --y: 42%;">青海</button>
+            <button class="map-point" data-place="西藏" style="--x: 24%; --y: 59%;">西藏</button>
+            <button class="map-point" data-place="雲貴" style="--x: 50%; --y: 74%;">雲貴</button>
+            <button class="map-point" data-place="湖南永興" style="--x: 62%; --y: 66%;">永興</button>
+            <button class="map-point" data-place="浙江石門" style="--x: 77%; --y: 62%;">石門</button>
+            <button class="map-point" data-place="江南" style="--x: 74%; --y: 55%;">江南</button>
+          </div>
+          <article class="place-detail" aria-live="polite"></article>
+        </div>
+      </section>
+
+      <section id="images" class="section" aria-labelledby="images-title">
+        <div class="section-heading">
+          <p class="section-kicker">Images & Objects</p>
+          <h2 id="images-title">圖像中的雍正</h2>
+          <p>圖像不是裝飾，而是版本、制度、書寫與宮廷觀看方式的材料。</p>
+        </div>
+        <div class="image-gallery"></div>
+      </section>
+
+      <section id="tools" class="section tools-section" aria-labelledby="tools-title">
+        <div class="section-heading">
+          <p class="section-kicker">Research Tools</p>
+          <h2 id="tools-title">研究工具</h2>
+          <p>先做可用的研究入口：全文檢索、關鍵詞索引、文獻對讀與版本比較。</p>
+        </div>
+        <div class="tool-grid">
+          <section class="search-tool" aria-labelledby="search-title">
+            <h3 id="search-title">全文檢索</h3>
+            <label for="site-search">搜尋人名、地名、年號、官職、概念詞、篇名</label>
+            <input id="site-search" type="search" placeholder="例如：正統、曾靜、硃批、圓明居士">
+            <div class="search-results" aria-live="polite"></div>
+          </section>
+          <section class="keyword-index" aria-labelledby="keyword-title">
+            <h3 id="keyword-title">關鍵詞索引</h3>
+            <div class="keyword-buttons"></div>
+            <div class="keyword-result" aria-live="polite"></div>
+          </section>
+          <section class="compare-tool" aria-labelledby="compare-title">
+            <h3 id="compare-title">文獻對讀</h3>
+            <div class="compare-grid">
+              <article>
+                <span>《大義覺迷錄》</span>
+                <p>以「華夷、君臣、正統」為核心，回應曾靜案所暴露的政治與思想危機。</p>
+              </article>
+              <article>
+                <span>《清世宗實錄》</span>
+                <p>以編年敘事記錄諭旨與政務，可與《大義覺迷錄》互證事件次序。</p>
+              </article>
+            </div>
+          </section>
+          <section class="version-tool" aria-labelledby="version-title">
+            <h3 id="version-title">版本比較</h3>
+            <p>預留《大義覺迷錄》不同版本、乾隆禁毀前後流傳、書影與藏本來源欄位。</p>
+            <meter min="0" max="100" value="36">36%</meter>
+            <span class="meter-label">首批版本資料建置 36%</span>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>大義覺迷</strong>
+        <p>一個雍正朝文獻、思想與公共史學展示的開放式網站原型。</p>
+      </div>
+      <p class="credits">
+        首頁橫幅使用本機整理影像；圖像欄來源含 Wikimedia Commons 公共領域或自由授權影像。正式上線前建議逐項補齊館藏號、版本與引用格式。
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
