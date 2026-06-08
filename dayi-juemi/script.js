@@ -260,6 +260,62 @@ const keywords = {
   "財政": ["耗羨歸公：地方財政制度化。", "錢糧奏摺：地方治理、官吏操守與民生。"]
 };
 
+const viewIds = ["timeline", "texts", "people", "places", "images", "tools"];
+
+function getViewFromHash() {
+  const hash = window.location.hash.replace("#", "");
+  return viewIds.includes(hash) ? hash : "home";
+}
+
+function setActiveLinks(view) {
+  document.querySelectorAll("[data-view-link]").forEach((link) => {
+    const active = link.dataset.viewLink === view;
+    link.classList.toggle("active", active);
+    if (active && view !== "home") {
+      link.setAttribute("aria-current", "page");
+    } else {
+      link.removeAttribute("aria-current");
+    }
+  });
+}
+
+function closeBookReader() {
+  const reader = document.querySelector(".book-reader");
+  if (reader) reader.hidden = true;
+}
+
+function showView(view = "home", options = {}) {
+  const { updateHash = true, scroll = true } = options;
+  const nextView = viewIds.includes(view) ? view : "home";
+  document.body.dataset.view = nextView;
+
+  document.querySelectorAll("main > .section").forEach((section) => {
+    section.hidden = section.id !== nextView;
+  });
+
+  if (nextView !== "texts") closeBookReader();
+  setActiveLinks(nextView);
+
+  if (updateHash) {
+    const nextHash = nextView === "home" ? "#top" : `#${nextView}`;
+    if (window.location.hash !== nextHash) {
+      history.pushState(null, "", nextHash);
+    }
+  }
+
+  if (scroll) {
+    const target = nextView === "home" ? document.querySelector(".hero") : document.getElementById(nextView);
+    target?.scrollIntoView({ block: "start" });
+  }
+}
+
+function openBookReader() {
+  showView("texts", { updateHash: true, scroll: false });
+  const reader = document.querySelector(".book-reader");
+  reader.hidden = false;
+  reader.scrollIntoView({ block: "start", behavior: "smooth" });
+}
+
 function renderTimeline(activeTag = "全部") {
   const list = document.querySelector(".timeline-list");
   const events = activeTag === "全部" ? timelineEvents : timelineEvents.filter((event) => event.tags.includes(activeTag));
@@ -293,8 +349,12 @@ function renderTextTabs(activeId = "political") {
   const library = document.querySelector(".text-library");
   tabs.innerHTML = textCategories.map((cat) => `<button class="tab-button" role="tab" aria-selected="${cat.id === activeId}" data-id="${cat.id}">${cat.name}</button>`).join("");
   const current = textCategories.find((cat) => cat.id === activeId);
-  library.innerHTML = current.items.map((item) => `
-    <article class="text-card">
+  library.innerHTML = current.items.map((item) => {
+    const isBook = item === "《世宗憲皇帝御製文集》";
+    const element = isBook ? "button" : "article";
+    const attributes = isBook ? ` type="button" data-document="imperial-anthology" aria-label="開啟《世宗憲皇帝御製文集》"` : "";
+    return `
+    <${element} class="text-card${isBook ? " text-card-button" : ""}"${attributes}>
       <small>${current.name}</small>
       <h3>${item}</h3>
       <p>${current.intro}</p>
@@ -304,8 +364,9 @@ function renderTextTabs(activeId = "political") {
         <li>注釋</li>
         <li>導讀</li>
       </ul>
-    </article>
-  `).join("");
+    </${element}>
+  `;
+  }).join("");
 }
 
 function renderToneList(activeTone = "all") {
@@ -374,10 +435,29 @@ function renderKeywords(active = "正統") {
 }
 
 function bindEvents() {
+  document.querySelectorAll("[data-view-link]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      showView(link.dataset.viewLink);
+    });
+  });
+
   document.querySelector(".text-tabs").addEventListener("click", (event) => {
     const button = event.target.closest("button");
     if (!button) return;
     renderTextTabs(button.dataset.id);
+    closeBookReader();
+  });
+
+  document.querySelector(".text-library").addEventListener("click", (event) => {
+    const button = event.target.closest("[data-document='imperial-anthology']");
+    if (!button) return;
+    openBookReader();
+  });
+
+  document.querySelector("[data-close-book]").addEventListener("click", () => {
+    closeBookReader();
+    document.querySelector(".text-library").scrollIntoView({ block: "start", behavior: "smooth" });
   });
 
   document.querySelector("#tone-select").addEventListener("change", (event) => {
@@ -399,6 +479,10 @@ function bindEvents() {
     if (!button) return;
     renderKeywords(button.dataset.keyword);
   });
+
+  window.addEventListener("hashchange", () => {
+    showView(getViewFromHash(), { updateHash: false, scroll: true });
+  });
 }
 
 renderFilters();
@@ -411,3 +495,4 @@ renderGallery();
 renderSearch();
 renderKeywords();
 bindEvents();
+showView(getViewFromHash(), { updateHash: false, scroll: false });

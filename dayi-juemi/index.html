@@ -9,7 +9,7 @@
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="大義覺迷首頁">
+      <a class="brand" href="#top" data-view-link="home" aria-label="大義覺迷首頁">
         <span class="brand-mark">雍</span>
         <span>
           <strong>大義覺迷</strong>
@@ -17,12 +17,12 @@
         </span>
       </a>
       <nav class="site-nav" aria-label="主導覽">
-        <a href="#timeline">年表</a>
-        <a href="#texts">文獻庫</a>
-        <a href="#people">人物</a>
-        <a href="#places">地圖</a>
-        <a href="#images">圖像</a>
-        <a href="#tools">工具</a>
+        <a href="#timeline" data-view-link="timeline">年表</a>
+        <a href="#texts" data-view-link="texts">文獻庫</a>
+        <a href="#people" data-view-link="people">人物</a>
+        <a href="#places" data-view-link="places">地圖</a>
+        <a href="#images" data-view-link="images">圖像</a>
+        <a href="#tools" data-view-link="tools">工具</a>
       </nav>
     </header>
 
@@ -34,9 +34,13 @@
           <p class="hero-lede">
             朕就是這樣漢子，就是這樣秉性，就是這樣皇帝。
           </p>
-          <div class="hero-actions">
-            <a class="button primary" href="#timeline">進入互動年表</a>
-            <a class="button ghost" href="#texts">查看文獻庫</a>
+          <div class="home-entry-grid" aria-label="章節入口">
+            <a class="button primary" href="#timeline" data-view-link="timeline">雍正年表</a>
+            <a class="button ghost" href="#texts" data-view-link="texts">文獻庫</a>
+            <a class="button ghost" href="#people" data-view-link="people">人物圖譜</a>
+            <a class="button ghost" href="#places" data-view-link="places">地圖與空間</a>
+            <a class="button ghost" href="#images" data-view-link="images">圖像與文物</a>
+            <a class="button ghost" href="#tools" data-view-link="tools">研究工具</a>
           </div>
         </div>
         <aside class="hero-archive" aria-label="首頁檔案摘要">
@@ -48,17 +52,6 @@
             <div><dt>研究視角</dt><dd>正統論 · 君臣關係 · 教化政治</dd></div>
           </dl>
         </aside>
-      </section>
-
-      <section class="entry-section" aria-label="章節入口">
-        <nav class="entry-links" aria-label="章節入口">
-          <a href="#timeline">雍正年表</a>
-          <a href="#texts">文獻庫</a>
-          <a href="#people">人物圖譜</a>
-          <a href="#places">地圖與空間</a>
-          <a href="#images">圖像與文物</a>
-          <a href="#tools">研究工具</a>
-        </nav>
       </section>
 
       <section id="timeline" class="section panel-section" aria-labelledby="timeline-title">
@@ -87,13 +80,13 @@
         <div class="text-tabs" role="tablist" aria-label="文獻分類"></div>
         <div class="text-library" aria-live="polite"></div>
 
-        <section class="book-reader" aria-labelledby="book-reader-title">
+        <section class="book-reader" aria-labelledby="book-reader-title" hidden>
           <div class="book-reader-head">
             <div>
               <p class="section-kicker">Book Prototype</p>
               <h3 id="book-reader-title">《世宗憲皇帝御製文集》</h3>
             </div>
-            <span>摛藻堂本 · 卷一書影</span>
+            <button class="text-command" type="button" data-close-book>返回文獻庫</button>
           </div>
           <div class="book-reader-grid">
             <figure class="book-facsimile">
